@@ -29,11 +29,11 @@ class PostService {
   }
   async update(id, body) {
     if (!Object.keys(body).length) {
-      throw new Error('Bad request', { code: 401 });
+      throw new Error('Bad request');
     }
     const index = this.posts.findIndex((post) => post.id === id);
     if (index === -1) {
-      throw new Error('Not found', { code: 404 });
+      throw new Error('Not found');
     }
     this.posts[index] = { ...this.posts[index], ...body };
     return id;

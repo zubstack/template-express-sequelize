@@ -8,44 +8,44 @@ router.get('/', async (req, res) => {
   res.json(await service.find());
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
     const searchedPost = await service.findOne(id);
     res.json(searchedPost);
   } catch (error) {
-    return res.status(404).json({ message: error.message });
+    next(error);
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', async (req, res, next) => {
   try {
     const { body } = req;
     const newItem = await service.create(body);
     res.status(201).json({ message: 'created', newItem });
   } catch (error) {
-    return res.status(401).json({ message: error.message });
+    next(error);
   }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
     const deletedId = await service.delete(id);
     res.status(201).json({ message: 'Deleted item with id: ' + deletedId });
   } catch (error) {
-    return res.status(404).json({ message: error.message });
+    next(error);
   }
 });
 
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', async (req, res, next) => {
   try {
     const { body } = req;
     const { id } = req.params;
     const updatedId = await service.update(id, body);
     res.status(201).json({ message: 'Updated item with id: ' + updatedId });
   } catch (error) {
-    return res.status(error.code).json({ message: error.message });
+    next(error);
   }
 });
 
