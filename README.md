@@ -14,3 +14,5 @@ To get random user names:
 3. Definir ruta padre para facilitar versionado: http://localhost:4000/api/v1/posts
 4. Habiltar: app.use(express.json()) para cuando se recibe contenido desde el cliente/
 5. Habilitar: POST de posts (temporal)
+6. Habilitar: PATCH/DELETE de posts (temporal)
+7. Establecemos códigos de estado para algunos casos de peticion.
