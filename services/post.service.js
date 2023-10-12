@@ -5,31 +5,43 @@ class PostService {
   constructor() {
     this.posts = initialPosts;
   }
-  create(body) {
-    body.id = faker.string.uuid();
-    body.author = faker.person.fullName();
-    this.posts.push(body);
-    return body;
+  async create(body) {
+    const newItem = {
+      id: faker.string.uuid(),
+      author: faker.person.fullName(),
+      ...body,
+    };
+    if (!Object.keys(body).length) {
+      throw new Error('Bad request');
+    }
+    this.posts.push(newItem);
+    return newItem;
   }
-  find() {
+  async find() {
     return this.posts;
   }
-  findOne(id) {
+  async findOne(id) {
     const searchedPost = this.posts.find((post) => post.id === id);
+    if (!searchedPost) {
+      throw new Error('Not found');
+    }
     return searchedPost;
   }
-  update(id, body) {
+  async update(id, body) {
+    if (!Object.keys(body).length) {
+      throw new Error('Bad request', { code: 401 });
+    }
     const index = this.posts.findIndex((post) => post.id === id);
     if (index === -1) {
-      return null;
+      throw new Error('Not found', { code: 404 });
     }
     this.posts[index] = { ...this.posts[index], ...body };
     return id;
   }
-  delete(id) {
+  async delete(id) {
     const index = this.posts.findIndex((post) => post.id === id);
     if (index === -1) {
-      return null;
+      throw new Error('Not found');
     }
     this.posts.splice(index, 1);
     return id;
