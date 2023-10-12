@@ -52,3 +52,20 @@ Imported from Full Stack Open:
 - logger (info, error) to avoid using console.log everywhere.
 - logger request to see more details
 - "unknown endpoint" middleware
+- Testing
+
+### Testing
+
+To testing:
+
+- npm install jest
+
+Puedes simular solicitudes HTTP a tus rutas de Express directamente desde tus pruebas.Esto te permite probar cómo responde tu aplicación a diferentes solicitudes y entradas:
+
+- npm install supertest
+
+15. Creamos un archivo de pruebas para los posts en la carpeta de "tests".
+16. Modificamos scripts en el package.json (start, dev, test) para especificar en que entorno se encuentra corriendo la app.
+17. Agragamos teardown.js para que los tests finalizen apropiadamente.
+18. Separamos a index.js (launcher) y app.js.
+19. Volvemos al "port" dinamico segun el entorno de la app. Con esto nos evitamos colisiones cuando dos entornos distintos corran al mismo tiempo.
