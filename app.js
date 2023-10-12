@@ -15,6 +15,10 @@ const app = express();
 app.use(express.json());
 app.use(requestLogger);
 
+app.get('/', (request, response) => {
+  response.send('<h1>Welcome to Blog API</h1>');
+});
+
 app.use(cors());
 routerApi(app);
 
