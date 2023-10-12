@@ -4,6 +4,7 @@ const validatorHandler = require('../middlewares/validator.handler');
 const {
   createPostSchema,
   updatePostSchema,
+  getPostSchema,
 } = require('../schemas/post.schema');
 
 const router = express.Router();
@@ -13,15 +14,19 @@ router.get('/', async (req, res) => {
   res.json(await service.find());
 });
 
-router.get('/:id', async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const searchedPost = await service.findOne(id);
-    res.json(searchedPost);
-  } catch (error) {
-    next(error);
-  }
-});
+router.get(
+  '/:id',
+  validatorHandler(getPostSchema, 'params'),
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const searchedPost = await service.findOne(id);
+      res.json(searchedPost);
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 
 router.post(
   '/',
@@ -37,18 +42,23 @@ router.post(
   },
 );
 
-router.delete('/:id', async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const deletedId = await service.delete(id);
-    res.status(201).json({ message: 'Deleted item with id: ' + deletedId });
-  } catch (error) {
-    next(error);
-  }
-});
+router.delete(
+  '/:id',
+  validatorHandler(getPostSchema, 'params'),
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const deletedId = await service.delete(id);
+      res.status(201).json({ message: 'Deleted item with id: ' + deletedId });
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 
 router.patch(
   '/:id',
+  validatorHandler(getPostSchema, 'params'),
   validatorHandler(updatePostSchema, 'body'),
   async (req, res, next) => {
     try {

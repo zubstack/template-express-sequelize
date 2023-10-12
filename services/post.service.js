@@ -23,7 +23,7 @@ class PostService {
   async findOne(id) {
     const searchedPost = this.posts.find((post) => post.id === id);
     if (!searchedPost) {
-      throw boom.notFound('This post does not exists');
+      throw boom.notFound('This post does not exist');
     }
     if (searchedPost.isPrivate) {
       throw boom.conflict('This post is private');
@@ -36,7 +36,7 @@ class PostService {
     }
     const index = this.posts.findIndex((post) => post.id === id);
     if (index === -1) {
-      throw boom.notFound('This post does not exists');
+      throw boom.notFound('This post does not exist');
     }
     if (this.posts[index].isPrivate) {
       throw boom.conflict('This post is private');
@@ -47,7 +47,7 @@ class PostService {
   async delete(id) {
     const index = this.posts.findIndex((post) => post.id === id);
     if (index === -1) {
-      throw boom.notFound('This post does not exists');
+      throw boom.notFound('This post does not exist');
     }
     if (this.posts[index].isPrivate) {
       throw boom.conflict('This post is private');
