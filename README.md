@@ -46,3 +46,9 @@ To data validation:
 
 13. Ajustamos nuestros requisitos creando schemas de Joi para cada identidad y "subesquemas" depiendo de la informacion necesaria para realizar cierta accion.
 14. Validamos la data que proviene desde el cliente usando un middleware que valida empleando schemas.
+
+Imported from Full Stack Open:
+
+- logger (info, error) to avoid using console.log everywhere.
+- logger request to see more details
+- "unknown endpoint" middleware

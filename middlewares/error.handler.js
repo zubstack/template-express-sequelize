@@ -15,6 +15,10 @@ function boomErrorHandler(error, request, response, next) {
   next(error);
 }
 
+const unknownEndpoint = (request, response) => {
+  response.status(404).send({ error: 'unknown endpoint' });
+};
+
 function errorHandler(error, request, response, next) {
   response.status(500).json({
     message: error.message,
@@ -22,4 +26,4 @@ function errorHandler(error, request, response, next) {
   });
 }
 
-module.exports = { logErrors, errorHandler, boomErrorHandler };
+module.exports = { logErrors, errorHandler, boomErrorHandler, unknownEndpoint };

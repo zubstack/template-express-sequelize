@@ -5,6 +5,7 @@ const {
   logErrors,
   errorHandler,
   boomErrorHandler,
+  unknownEndpoint,
 } = require('./middlewares/error.handler.js');
 const requestLogger = require('./middlewares/logger.request');
 
@@ -18,6 +19,7 @@ routerApi(app);
 
 app.use(logErrors);
 app.use(boomErrorHandler);
+app.use(unknownEndpoint);
 app.use(errorHandler);
 
 app.listen(port, () => {
