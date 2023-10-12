@@ -29,5 +29,13 @@ Las librerías se contactan a otras fuentes de datos: API externa o base de dato
 8. Creamos la capa de servicios de tal forma que los "routers" solo brinden acceso y queden fuera de logica de negocio.
 9. Implemnetamos sintaxis "try/catch" para manejar errores de peticion.
 10. Incluimos la carpeta de middlewares que empieza con dos de "tipo error"; uno captura y logea en consola y el otro captura y responde (con formato) al cleinte.
-    Nota: Siempre se define los middlewares de tipo error despues de los de tipo routing.
+
+Nota: Siempre se define los middlewares de tipo error despues de los de tipo routing.
+
 11. Manejamos los "catch" en los routers pasandolos al siguiente middleware (next(error))
+
+To organize error responses:
+
+- npm install @hapi/boom
+
+12. Optimizamos el manejo de errores con un middleware que utiliza boom error handler.

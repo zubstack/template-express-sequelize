@@ -1,4 +1,5 @@
 const { faker } = require('@faker-js/faker');
+const boom = require('@hapi/boom');
 const { initialPosts } = require('../utils/temp');
 
 class PostService {
@@ -12,7 +13,7 @@ class PostService {
       ...body,
     };
     if (!Object.keys(body).length) {
-      throw new Error('Bad request');
+      throw boom.badRequest('Missing data');
     }
     this.posts.push(newItem);
     return newItem;
@@ -23,17 +24,17 @@ class PostService {
   async findOne(id) {
     const searchedPost = this.posts.find((post) => post.id === id);
     if (!searchedPost) {
-      throw new Error('Not found');
+      throw boom.notFound('This post does not exists');
     }
     return searchedPost;
   }
   async update(id, body) {
     if (!Object.keys(body).length) {
-      throw new Error('Bad request');
+      throw boom.badRequest('Missing data');
     }
     const index = this.posts.findIndex((post) => post.id === id);
     if (index === -1) {
-      throw new Error('Not found');
+      throw boom.notFound('This post does not exists');
     }
     this.posts[index] = { ...this.posts[index], ...body };
     return id;
@@ -41,7 +42,7 @@ class PostService {
   async delete(id) {
     const index = this.posts.findIndex((post) => post.id === id);
     if (index === -1) {
-      throw new Error('Not found');
+      throw boom.notFound('This post does not exists');
     }
     this.posts.splice(index, 1);
     return id;

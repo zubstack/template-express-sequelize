@@ -4,17 +4,19 @@ function logErrors(error, req, res, next) {
   next(error);
 }
 
+function boomErrorHandler(error, req, res, next) {
+  if (error.isBoom) {
+    const { output } = error;
+    return res.status(output.statusCode).json(output.payload);
+  }
+  next(error);
+}
+
 function errorHandler(error, req, res, next) {
-  if (error.message === 'Not found') {
-    return res.status(404).json({ message: error.message });
-  }
-  if (error.message === 'Bad request') {
-    return res.status(401).json({ message: error.message });
-  }
   res.status(500).json({
     message: error.message,
     stack: error.stack,
   });
 }
 
-module.exports = { logErrors, errorHandler };
+module.exports = { logErrors, errorHandler, boomErrorHandler };
