@@ -13,4 +13,11 @@ router.get('/:id', (req, res) => {
   res.json(searchedPost);
 });
 
+router.post('/', (req, res) => {
+  const { body } = req;
+  body.id = initialPosts.length + 1;
+  initialPosts.push(body);
+  res.send(body);
+});
+
 module.exports = router;

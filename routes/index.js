@@ -1,9 +1,12 @@
+const express = require('express');
 const postsRouter = require('../routes/posts.router');
 const categoriesRouter = require('../routes/categories.router');
 
 function routerApi(app) {
-  app.use('/posts', postsRouter);
-  app.use('/categories', categoriesRouter);
+  const router = express.Router();
+  app.use('/api/v1', router);
+  router.use('/posts', postsRouter);
+  router.use('/categories', categoriesRouter);
 }
 
 module.exports = routerApi;

@@ -9,6 +9,8 @@ To get random user names:
 
 - npm install --save-dev @faker-js/faker
 
-1. Define las entidades: posts, categories
+1. Define las entidades: posts, categories y habilita GET para obtener datos
 2. Separa las rutas relacionadas con cada entidad
-3.
+3. Definir ruta padre para facilitar versionado: http://localhost:4000/api/v1/posts
+4. Habiltar: app.use(express.json()) para cuando se recibe contenido desde el cliente/
+5. Habilitar: POST de posts (temporal)
