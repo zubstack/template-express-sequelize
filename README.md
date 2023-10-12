@@ -69,3 +69,10 @@ Puedes simular solicitudes HTTP a tus rutas de Express directamente desde tus pr
 17. Agragamos teardown.js para que los tests finalizen apropiadamente.
 18. Separamos a index.js (launcher) y app.js.
 19. Volvemos al "port" dinamico segun el entorno de la app. Con esto nos evitamos colisiones cuando dos entornos distintos corran al mismo tiempo.
+20. Elaboramos distintos "test" para posibles esenarios de respuesta de los endpoints de nuestra api.
+
+To eliminate the try/catch syntax:
+
+- npm install express-async-errors
+
+21. Eliminamos nuestra dependencia de try/catch ya que las excepciones (catch) son manejadas por otro middleware detras de escenas. Simplifica mucho el codigo en los routers

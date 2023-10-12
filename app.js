@@ -1,4 +1,5 @@
 const express = require('express');
+require('express-async-errors');
 const routerApi = require('./routes');
 const {
   logErrors,
