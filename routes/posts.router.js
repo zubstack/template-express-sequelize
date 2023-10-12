@@ -1,17 +1,17 @@
 const express = require('express');
-const { initialPosts } = require('../utils/temp');
-const { faker } = require('@faker-js/faker');
+const PostService = require('../services/post.service');
 
 const router = express.Router();
+const service = new PostService();
 
 router.get('/', (req, res) => {
-  res.json(initialPosts);
+  res.json(service.find());
 });
 
 router.get('/:id', (req, res) => {
   const { id } = req.params;
 
-  const searchedPost = initialPosts.find((post) => post.id === parseInt(id));
+  const searchedPost = service.findOne(id);
   if (!searchedPost) {
     return res.status(404).json({ message: 'Not found' });
   }
@@ -20,21 +20,21 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   const { body } = req;
-  body.id = initialPosts.length + 1;
-  body.author = faker.person.fullName();
-  initialPosts.push(body);
-  res.status(201).json({ message: 'created', body });
+  if (!Object.keys(body).length) {
+    return res.status(401).json({ message: 'Bad request' });
+  }
+  const newItem = service.create(body);
+  res.status(201).json({ message: 'created', newItem });
 });
 
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
 
-  const index = initialPosts.findIndex((post) => post.id === parseInt(id));
-  if (index === -1) {
+  const deletedId = service.delete(id);
+  if (!deletedId) {
     return res.status(404).json({ message: 'Not found' });
   }
-  initialPosts.splice(index, 1);
-  res.status(201).json({ message: 'Deleted item with id: ' + id });
+  res.status(201).json({ message: 'Deleted item with id: ' + deletedId });
 });
 
 router.patch('/:id', (req, res) => {
@@ -43,11 +43,10 @@ router.patch('/:id', (req, res) => {
   if (!Object.keys(body).length) {
     return res.status(401).json({ message: 'Bad request' });
   }
-  const index = initialPosts.findIndex((post) => post.id === parseInt(id));
-  if (index === -1) {
+  const updatedId = service.update(id, body);
+  if (!updatedId) {
     return res.status(404).json({ message: 'Not found' });
   }
-  initialPosts[index] = { ...initialPosts[index], ...body };
 
   res.status(201).json({ message: 'Updated item with id: ' + id });
 });
