@@ -1,6 +1,9 @@
 /* eslint-disable no-unused-vars */
+
+const logger = require('../utils/logger');
+
 function logErrors(error, req, res, next) {
-  console.log(error);
+  logger.info(error);
   next(error);
 }
 

@@ -1,5 +1,6 @@
 const express = require('express');
 const routerApi = require('./routes');
+const logger = require('./utils/logger');
 const {
   logErrors,
   errorHandler,
@@ -18,5 +19,5 @@ app.use(boomErrorHandler);
 app.use(errorHandler);
 
 app.listen(port, () => {
-  console.log('Server is running at port: ' + port);
+  logger.info('Server is running at port: ' + port);
 });
