@@ -20,4 +20,20 @@ router.post('/', (req, res) => {
   res.send(body);
 });
 
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
+  const index = initialPosts.findIndex((post) => post.id === parseInt(id));
+  initialPosts.splice(index, 1);
+  res.json('Deleted item with id: ' + id);
+});
+
+router.patch('/:id', (req, res) => {
+  const { body } = req;
+  const { id } = req.params;
+  const index = initialPosts.findIndex((post) => post.id === parseInt(id));
+  initialPosts[index] = { ...initialPosts[index], ...body };
+
+  res.json('Updated item with id: ' + id);
+});
+
 module.exports = router;
