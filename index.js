@@ -1,7 +1,7 @@
 const app = require('./app');
 const logger = require('./utils/logger');
 
-const port = process.env.NODE_ENV !== 'test' ? 4001 : 4000;
+const port = process.env.NODE_ENV !== 'test' ? 4000 : 4001;
 // const port = 4000;
 
 app.listen(port, () => {
