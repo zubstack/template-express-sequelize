@@ -2,14 +2,14 @@ const { faker } = require('@faker-js/faker');
 
 const initialPosts = [
   {
-    id: 1,
+    id: faker.string.uuid(),
     title: 'Javascript is awsome',
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, eaque cumque vel voluptatem consequuntur et consequatur.',
     author: faker.person.fullName(),
   },
   {
-    id: 2,
+    id: faker.string.uuid(),
     title: 'Backend is incredible',
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, eaque cumque vel voluptatem consequuntur et consequatur.',

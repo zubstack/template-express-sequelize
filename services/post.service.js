@@ -6,7 +6,7 @@ class PostService {
     this.posts = initialPosts;
   }
   create(body) {
-    body.id = this.posts.length + 1;
+    body.id = faker.string.uuid();
     body.author = faker.person.fullName();
     this.posts.push(body);
     return body;
@@ -15,11 +15,11 @@ class PostService {
     return this.posts;
   }
   findOne(id) {
-    const searchedPost = this.posts.find((post) => post.id === parseInt(id));
+    const searchedPost = this.posts.find((post) => post.id === id);
     return searchedPost;
   }
   update(id, body) {
-    const index = this.posts.findIndex((post) => post.id === parseInt(id));
+    const index = this.posts.findIndex((post) => post.id === id);
     if (index === -1) {
       return null;
     }
@@ -27,7 +27,7 @@ class PostService {
     return id;
   }
   delete(id) {
-    const index = this.posts.findIndex((post) => post.id === parseInt(id));
+    const index = this.posts.findIndex((post) => post.id === id);
     if (index === -1) {
       return null;
     }
