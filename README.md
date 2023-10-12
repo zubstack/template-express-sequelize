@@ -19,7 +19,7 @@ To get random user names:
 
 Flujo de trabajo:
 
-Controladores: Encontramos los routes y middlewares.
+Controladores: Encontramos los routes y middlewaresponse.
 Los controladores acceden a la capa de servicios
 Servicios: donde se encuentra la lógica de negocio
 Los servicios usan las librerías.

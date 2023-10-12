@@ -3,16 +3,16 @@ const { categories } = require('../utils/temp');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.json(categories);
+router.get('/', (request, response) => {
+  response.json(categories);
 });
 
-router.get('/:id', (req, res) => {
-  const { id } = req.params;
+router.get('/:id', (request, response) => {
+  const { id } = request.params;
   const searchedCategory = categories.find(
     (category) => category.id === parseInt(id),
   );
-  res.json(searchedCategory);
+  response.json(searchedCategory);
 });
 
 module.exports = router;

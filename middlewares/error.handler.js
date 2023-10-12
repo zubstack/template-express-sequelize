@@ -2,21 +2,21 @@
 
 const logger = require('../utils/logger');
 
-function logErrors(error, req, res, next) {
+function logErrors(error, request, response, next) {
   logger.info(error);
   next(error);
 }
 
-function boomErrorHandler(error, req, res, next) {
+function boomErrorHandler(error, request, response, next) {
   if (error.isBoom) {
     const { output } = error;
-    return res.status(output.statusCode).json(output.payload);
+    return response.status(output.statusCode).json(output.payload);
   }
   next(error);
 }
 
-function errorHandler(error, req, res, next) {
-  res.status(500).json({
+function errorHandler(error, request, response, next) {
+  response.status(500).json({
     message: error.message,
     stack: error.stack,
   });

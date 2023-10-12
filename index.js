@@ -6,11 +6,13 @@ const {
   errorHandler,
   boomErrorHandler,
 } = require('./middlewares/error.handler.js');
+const requestLogger = require('./middlewares/logger.request');
 
 const app = express();
 const port = 4000;
 
 app.use(express.json());
+app.use(requestLogger);
 
 routerApi(app);
 

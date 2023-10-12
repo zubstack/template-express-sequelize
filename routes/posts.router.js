@@ -10,18 +10,18 @@ const {
 const router = express.Router();
 const service = new PostService();
 
-router.get('/', async (req, res) => {
-  res.json(await service.find());
+router.get('/', async (request, response) => {
+  response.json(await service.find());
 });
 
 router.get(
   '/:id',
   validatorHandler(getPostSchema, 'params'),
-  async (req, res, next) => {
+  async (request, response, next) => {
     try {
-      const { id } = req.params;
+      const { id } = request.params;
       const searchedPost = await service.findOne(id);
-      res.json(searchedPost);
+      response.json(searchedPost);
     } catch (error) {
       next(error);
     }
@@ -31,11 +31,11 @@ router.get(
 router.post(
   '/',
   validatorHandler(createPostSchema, 'body'),
-  async (req, res, next) => {
+  async (request, response, next) => {
     try {
-      const { body } = req;
+      const { body } = request;
       const newItem = await service.create(body);
-      res.status(201).json({ message: 'created', newItem });
+      response.status(201).json({ message: 'created', newItem });
     } catch (error) {
       next(error);
     }
@@ -45,11 +45,13 @@ router.post(
 router.delete(
   '/:id',
   validatorHandler(getPostSchema, 'params'),
-  async (req, res, next) => {
+  async (request, response, next) => {
     try {
-      const { id } = req.params;
+      const { id } = request.params;
       const deletedId = await service.delete(id);
-      res.status(201).json({ message: 'Deleted item with id: ' + deletedId });
+      response
+        .status(201)
+        .json({ message: 'Deleted item with id: ' + deletedId });
     } catch (error) {
       next(error);
     }
@@ -60,12 +62,14 @@ router.patch(
   '/:id',
   validatorHandler(getPostSchema, 'params'),
   validatorHandler(updatePostSchema, 'body'),
-  async (req, res, next) => {
+  async (request, response, next) => {
     try {
-      const { body } = req;
-      const { id } = req.params;
+      const { body } = request;
+      const { id } = request.params;
       const updatedId = await service.update(id, body);
-      res.status(201).json({ message: 'Updated item with id: ' + updatedId });
+      response
+        .status(201)
+        .json({ message: 'Updated item with id: ' + updatedId });
     } catch (error) {
       next(error);
     }
