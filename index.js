@@ -4,7 +4,7 @@ const {
   logErrors,
   errorHandler,
   boomErrorHandler,
-} = require('./middlewares/error.hanlder');
+} = require('./middlewares/error.handler.js');
 
 const app = express();
 const port = 4000;

@@ -39,3 +39,10 @@ To organize error responses:
 - npm install @hapi/boom
 
 12. Optimizamos el manejo de errores con un middleware que utiliza boom error handler.
+
+To data validation:
+
+- npm install joi
+
+13. Ajustamos nuestros requisitos creando schemas de Joi para cada identidad y "subesquemas" depiendo de la informacion necesaria para realizar cierta accion.
+14. Validamos la data que proviene desde el cliente usando un middleware que valida empleando schemas.

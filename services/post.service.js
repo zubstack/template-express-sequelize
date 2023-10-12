@@ -9,7 +9,6 @@ class PostService {
   async create(body) {
     const newItem = {
       id: faker.string.uuid(),
-      author: faker.person.fullName(),
       ...body,
     };
     if (!Object.keys(body).length) {
