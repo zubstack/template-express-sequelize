@@ -20,6 +20,11 @@ const modelUpdate = {
   title: 'Javascript is beautiful',
 };
 
+const badModel = {
+  autor: 'Julio Cesar',
+  titler: 'Javascript is beautiful',
+};
+
 test('posts are returned as json', async () => {
   await api
     .get(url)
@@ -70,6 +75,12 @@ test('fails with 400 with no content', async () => {
   const id = 'c96adfc2-ce21-4794-8cb2-460d29561b59';
   await api.patch(`${url}/${id}`).expect(400);
   await api.post(url).expect(400);
+});
+
+test('fails with 400 with bad model', async () => {
+  const id = 'c96adfc2-ce21-4794-8cb2-460d29561b59';
+  await api.patch(`${url}/${id}`).send(badModel).expect(400);
+  await api.post(url).send(badModel).expect(400);
 });
 
 //Nota: Como por el momento estamos usando un "database" basa en memoria, encontraremos exactamente la misma info cada vez que se corran las pruebas.
