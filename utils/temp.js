@@ -7,6 +7,7 @@ const initialPosts = [
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, eaque cumque vel voluptatem consequuntur et consequatur.',
     author: faker.person.fullName(),
+    isPrivate: true,
   },
   {
     id: '2',
