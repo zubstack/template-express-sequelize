@@ -76,3 +76,9 @@ To eliminate the try/catch syntax:
 - npm install express-async-errors
 
 21. Eliminamos nuestra dependencia de try/catch ya que las excepciones (catch) son manejadas por otro middleware detras de escenas. Simplifica mucho el codigo en los routers
+
+To solution cors:
+
+- npm install cors
+
+22. Resolvemos el problema de cors para un cliente de otro origen.

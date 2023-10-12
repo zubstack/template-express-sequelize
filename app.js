@@ -1,5 +1,6 @@
 const express = require('express');
 require('express-async-errors');
+const cors = require('cors');
 const routerApi = require('./routes');
 const {
   logErrors,
@@ -14,6 +15,7 @@ const app = express();
 app.use(express.json());
 app.use(requestLogger);
 
+app.use(cors());
 routerApi(app);
 
 app.use(logErrors);
