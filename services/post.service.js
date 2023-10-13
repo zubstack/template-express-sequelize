@@ -1,6 +1,7 @@
 const { faker } = require('@faker-js/faker');
 const boom = require('@hapi/boom');
 const { initialPosts } = require('../utils/temp');
+const getConnection = require('../libs/postgres');
 
 class PostService {
   constructor() {
@@ -18,7 +19,10 @@ class PostService {
     return newItem;
   }
   async find() {
-    return this.posts;
+    const client = await getConnection();
+    const response = await client.query('SELECT * FROM persons');
+    return response.rows;
+    // return this.posts;
   }
   async findOne(id) {
     const searchedPost = this.posts.find((post) => post.id === id);

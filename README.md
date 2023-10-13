@@ -92,7 +92,8 @@ To solution cors:
 | `docker-compose build`                     | Construye o reconstruye las imágenes de los servicios definidos en el archivo `docker-compose.yml`.  |
 | `docker-compose pull`                      | Descarga las imágenes especificadas en el archivo `docker-compose.yml` sin iniciar los contenedores. |
 | `docker-compose logs`                      | Muestra los registros (logs) de los servicios en ejecución. Puedes usar opciones para filtrarlos.    |
-| `docker-compose exec <servicio> <comando>` | Ejecuta un comando en un contenedor de servicio específico.                                          |
+| `docker-compose exec <servicio> <comando>` | Ejecuta                                                                                              |
+| un contenedor de servicio específico.      |
 | `docker-compose stop`                      | Detiene los contenedores, pero no los elimina. Puedes usar `docker-compose start` para reanudarlos.  |
 | `docker-compose restart`                   | Reinicia los contenedores que están definidos en el archivo `docker-compose.yml`.                    |
 | `docker-compose down -v`                   | Detiene y elimina los servicios y contenedores, incluyendo volúmenes (datos persistentes).           |
@@ -124,3 +125,14 @@ Nota: En el directorio del "volumen" no solo persiste la data sino tambien la co
 | `UPDATE <TABLE_NAME> SET column1 = value1 WHERE condition;`            | Update data in a table                |
 | `DELETE FROM <TABLE_NAME> WHERE condition;`                            | Delete data from a table              |
 | `\q`                                                                   | Quit the PostgreSQL command-line tool |
+
+26. Agregamos informacion de pruba a nuestra base de datos, sea por bash o por la insterfaz grafica.
+
+## Integración de node-postgres
+
+- npm install pg
+
+27. Creamos el directorio "lib" para manejar coneccion a terceros.
+28. Creamos un archivo "postgres.js" donde obtendremos un enlace a nuestra base de datos por medio de instanciar la clase "Client" y agregarle las credenciales pertinentes para establecer la conexion.
+
+Observacion: Al crear una instancia de cliente, le agregamos paramtros como credenciales, ejecutamos su metodo connection() y la ponemos a disposicion. Este objeto "client" tiene la capacidad de hacer "querys" DIRECTAMENTE a nuestra base de datos en tiempo real. Muy curioso.
