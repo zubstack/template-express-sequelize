@@ -220,6 +220,8 @@ $RECYCLE.BIN/
 #REST CLIENT
 .requests
 
+#Postgres volume:
+postgres_data
 
 #Temporal storage
 # utils/temp.js

@@ -81,4 +81,27 @@ To solution cors:
 
 - npm install cors
 
-22. Resolvemos el problema de cors para un cliente de otro origen.
+22. Resolvemos el problema de cors para un cliente de otro origen. En el caso de ser una api "privada" manejar un whitelist.
+
+### Postgres SQL intregation
+
+#### Comandos de Docker Compose
+
+| Comando                                    | Descripción                                                                                          |
+| ------------------------------------------ | ---------------------------------------------------------------------------------------------------- |
+| `docker-compose build`                     | Construye o reconstruye las imágenes de los servicios definidos en el archivo `docker-compose.yml`.  |
+| `docker-compose pull`                      | Descarga las imágenes especificadas en el archivo `docker-compose.yml` sin iniciar los contenedores. |
+| `docker-compose logs`                      | Muestra los registros (logs) de los servicios en ejecución. Puedes usar opciones para filtrarlos.    |
+| `docker-compose exec <servicio> <comando>` | Ejecuta un comando en un contenedor de servicio específico.                                          |
+| `docker-compose stop`                      | Detiene los contenedores, pero no los elimina. Puedes usar `docker-compose start` para reanudarlos.  |
+| `docker-compose restart`                   | Reinicia los contenedores que están definidos en el archivo `docker-compose.yml`.                    |
+| `docker-compose down -v`                   | Detiene y elimina los servicios y contenedores, incluyendo volúmenes (datos persistentes).           |
+| `docker-compose up --build`                | Inicia los servicios y reconstruye las imágenes si es necesario.                                     |
+| `docker-compose up -d`                     | Inicia los servicios en modo "demonio" (background).                                                 |
+
+23. Configuramos el servicio que levantaremos con docker en un "docker-compose.yml"
+24. Corremos el servicio con el comando de docker compose correspondiente
+
+Nota: Por defecto, docker no persiste informacion de sus servicios, todo se elimina cuando el contenedor es dado de baja (down).Para cumplir su funcion de persistencia requiere que especifiquemos un sitio de "volumen" donde la informacion se guardara.
+
+25. Configuramos ubicacion del directorio del volumen que persiste informacion e lo incluimos en el .gitignore.
