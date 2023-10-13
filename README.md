@@ -141,3 +141,4 @@ Recomendacion: Es mucho mejor manejar un "pool" de conexiones que generar una co
 
 29. Para hacer mis primeras practicas con un CRUD conectado por pooling a una autentica base de datos, habilite una nueva entidad "persons".
 30. Habilite los endpoints del CRUD de persons que directamente opera con la postgresDB.
+31. Habilite los test para probar los endpoints de la entidad "persons"
