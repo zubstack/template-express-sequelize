@@ -1,25 +1,21 @@
 const boom = require('@hapi/boom');
-const pool = require('../libs/postgres.pool');
-const logger = require('../utils/logger');
+const sequelize = require('../libs/sequelize');
 
 class PersonService {
-  constructor() {
-    this.pool = pool;
-    this.pool.on('error', (error) => logger.error(error));
-  }
+  constructor() {}
 
   async find() {
-    const response = await this.pool.query('SELECT * FROM persons');
-    return response.rows;
+    const [data] = await sequelize.query('SELECT * FROM persons');
+    return data;
   }
   async findOne(id) {
-    const { rows } = await this.pool.query(
+    const [data] = await sequelize.query(
       `SELECT * FROM persons WHERE id = ${id}`,
     );
-    if (!Object.keys(rows).length) {
+    if (!Object.keys(data).length) {
       throw boom.notFound('This person does not exist');
     }
-    return rows;
+    return data;
   }
 
   async create(body) {
@@ -28,13 +24,13 @@ class PersonService {
     }
     const query = `INSERT INTO persons (name, birth_date, phone)
     VALUES ('${body.name}', '${body.birth_date}', '${body.phone}');`;
-    await this.pool.query(query);
+    await sequelize.query(query);
     return body;
   }
 
   async delete(id) {
     const [item] = await this.findOne(id);
-    await this.pool.query(`DELETE FROM persons WHERE id = ${item.id}`);
+    await sequelize.query(`DELETE FROM persons WHERE id = ${item.id}`);
     return id;
   }
 
@@ -48,7 +44,7 @@ class PersonService {
       const element = body[key];
       query.push(`${key} = '${element}'`);
     }
-    await this.pool.query(
+    await sequelize.query(
       `UPDATE persons SET ${query.join(', ')} WHERE id = ${item.id}`,
     );
     return id;

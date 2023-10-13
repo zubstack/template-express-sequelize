@@ -130,6 +130,8 @@ Nota: En el directorio del "volumen" no solo persiste la data sino tambien la co
 
 ## Integración de node-postgres
 
+Driver de integracion:
+
 - npm install pg
 
 27. Creamos el directorio "lib" para manejar coneccion a terceros.
@@ -141,4 +143,16 @@ Recomendacion: Es mucho mejor manejar un "pool" de conexiones que generar una co
 
 29. Para hacer mis primeras practicas con un CRUD conectado por pooling a una autentica base de datos, habilite una nueva entidad "persons".
 30. Habilite los endpoints del CRUD de persons que directamente opera con la postgresDB.
-31. Habilite los test para probar los endpoints de la entidad "persons"
+31. Habilite los test para probar los endpoints de la entidad "persons".
+32. Implementamos buenas practicas al manejar los parametros de la conexion por medio de variables de entorno para proteger sus valores.
+
+Permite incluir variables de entorno desde un archivo .env:
+
+- npm install dotenv
+
+### ORM - Sequelize
+
+- npm install --save sequelize
+- npm install --save pg-hstore
+
+33. Cambio la conexion por pooling por una conexion sequelize, que me permite jugar con SQL querys con OOP. Sequelize incluye la estrategia del pooling internamente.
