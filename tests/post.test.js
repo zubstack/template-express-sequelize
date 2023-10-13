@@ -34,6 +34,7 @@ test('posts are returned as json', async () => {
 
 test('there are two posts', async () => {
   const response = await api.get(url);
+  console.log(response.body);
   expect(response.body).toHaveLength(2);
 });
 

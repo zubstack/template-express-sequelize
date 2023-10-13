@@ -1,20 +1,20 @@
 const { faker } = require('@faker-js/faker');
 const boom = require('@hapi/boom');
 const { initialPosts } = require('../utils/temp');
-const pool = require('../libs/postgres.pool');
-const logger = require('../utils/logger');
+// const pool = require('../libs/postgres.pool');
+// const logger = require('../utils/logger');
 
 class PostService {
   constructor() {
     this.posts = initialPosts;
-    this.pool = pool;
-    this.pool.on('error', (error) => logger.error(error));
+    // this.pool = pool;
+    // this.pool.on('error', (error) => logger.error(error));
   }
 
   async find() {
-    const response = await this.pool.query('SELECT * FROM persons');
-    return response.rows;
-    // return this.posts;
+    // const response = await this.pool.query('SELECT * FROM persons');
+    // return response.rows;
+    return this.posts;
   }
   async findOne(id) {
     const searchedPost = this.posts.find((post) => post.id === id);

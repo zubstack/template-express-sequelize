@@ -138,3 +138,6 @@ Nota: En el directorio del "volumen" no solo persiste la data sino tambien la co
 Observacion: Al crear una instancia de cliente, le agregamos paramtros como credenciales, ejecutamos su metodo connection() y la ponemos a disposicion. Este objeto "client" tiene la capacidad de hacer "querys" DIRECTAMENTE a nuestra base de datos en tiempo real. Muy curioso.
 
 Recomendacion: Es mucho mejor manejar un "pool" de conexiones que generar una conexion por cada request del cliente. El "pool" nos permite manejar multiples conexiones reutilizando la misma primera.
+
+29. Para hacer mis primeras practicas con un CRUD conectado por pooling a una autentica base de datos, habilite una nueva entidad "persons".
+30. Habilite los endpoints del CRUD de persons que directamente opera con la postgresDB.
