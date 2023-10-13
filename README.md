@@ -156,3 +156,24 @@ Permite incluir variables de entorno desde un archivo .env:
 - npm install --save pg-hstore
 
 33. Cambio la conexion por pooling por una conexion sequelize, que me permite jugar con SQL querys con OOP. Sequelize incluye la estrategia del pooling internamente.
+
+### Sequelize Models
+
+- npm install --save-dev sequelize-cli
+
+34. Inicializo el sequelize-cli (despues de hacer la configuracion respectiva en el .sequelizerc) y este crea una carpeta database con las carpetas "migrations","models","seeders" y archivo "config.js" (Todavia no tego bien entendido sus propositos)
+
+Nota: Uno de los usos mas utiles de un ORM es que te permite hacer consultas sin jugar con SQL directamente. Esto lo consigues a traves de metodos dentro de los modelos respectivos de cada identidad.
+
+35. Establezco un setupModels() en el index de /models con el fin de "inicializar" el schema y concretar la configuracion que estoy apunto de detallar
+
+36. Establezco el modelo de "persons"
+
+- Creo un schema de la entidad.
+- Extiendo la clase Model de sequelize (a la que llame 'Person') y configuro mediante parametros algunos detalles, entre ellos, el nombre de la tabla.
+
+Nota: Otra funcion muy util es la de sequelize.sync(), la que usa la configuracion de la que estaba recien hablando para sincronizar. En un primer caso, esto crea la tabla 'persons' automaticamente si no existe y esto apenas corra el programa principal.
+
+37. setupModels() hace funcion dentro del mismo archivo donde invoco la conexion sequelize, ya que necesita esta ultima para su configuracion.
+
+38. Establezco la syncronizacion de la que hable previamente. Ahora puedo cambiar mis services para que usen el "model" y no "sequelize" directamente.

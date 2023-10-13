@@ -1,11 +1,12 @@
 const boom = require('@hapi/boom');
 const sequelize = require('../libs/sequelize');
+const { models } = require('../libs/sequelize');
 
 class PersonService {
   constructor() {}
 
   async find() {
-    const [data] = await sequelize.query('SELECT * FROM persons');
+    const data = await models.Person.findAll();
     return data;
   }
   async findOne(id) {

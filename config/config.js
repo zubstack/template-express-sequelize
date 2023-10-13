@@ -13,6 +13,7 @@ const config = {
   dbHost: process.env.DB_HOST,
   dbPort: process.env.DB_PORT,
   dbName: database,
+  dbTest: process.env.DB_NAME_TEST,
 };
 
 module.exports = { config };
