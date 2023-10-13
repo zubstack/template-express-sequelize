@@ -105,3 +105,22 @@ To solution cors:
 Nota: Por defecto, docker no persiste informacion de sus servicios, todo se elimina cuando el contenedor es dado de baja (down).Para cumplir su funcion de persistencia requiere que especifiquemos un sitio de "volumen" donde la informacion se guardara.
 
 25. Configuramos ubicacion del directorio del volumen que persiste informacion e lo incluimos en el .gitignore.
+
+Nota: En el directorio del "volumen" no solo persiste la data sino tambien la configuracion, por lo que que cualquier cambio (de usuario, nombre de la databse, password) a la ultima implicaria ELIMINAR el directorio "volumen".
+
+#### Comandos de Docker Compose
+
+| Command                                                                | Description                           |
+| ---------------------------------------------------------------------- | ------------------------------------- |
+| `psql -U <POSTGRES_USER>`                                              | Connect to PostgreSQL as a user       |
+| `createdb <DATABASE_NAME>`                                             | Create a new PostgreSQL database      |
+| `psql -d <DATABASE_NAME>`                                              | Connect to a specific database        |
+| `\l`                                                                   | List all databases                    |
+| `\c <DATABASE_NAME>`                                                   | Connect to a different database       |
+| `\dt`                                                                  | List all tables in the current schema |
+| `\d <TABLE_NAME>`                                                      | Describe a specific table             |
+| `SELECT * FROM <TABLE_NAME>;`                                          | Retrieve data from a table            |
+| `INSERT INTO <TABLE_NAME> (column1, column2) VALUES (value1, value2);` | Insert data into a table              |
+| `UPDATE <TABLE_NAME> SET column1 = value1 WHERE condition;`            | Update data in a table                |
+| `DELETE FROM <TABLE_NAME> WHERE condition;`                            | Delete data from a table              |
+| `\q`                                                                   | Quit the PostgreSQL command-line tool |
