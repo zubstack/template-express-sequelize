@@ -1,7 +1,6 @@
 const express = require('express');
 const postsRouter = require('../routes/posts.router');
 const categoriesRouter = require('../routes/categories.router');
-const personsRouter = require('../routes/persons.router');
 const usersRouter = require('../routes/users.router');
 
 function routerApi(app) {
@@ -9,7 +8,6 @@ function routerApi(app) {
   app.use('/api/v1', router);
   router.use('/posts', postsRouter);
   router.use('/categories', categoriesRouter);
-  router.use('/persons', personsRouter);
   router.use('/users', usersRouter);
 }
 

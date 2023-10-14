@@ -1,21 +1,21 @@
 const pool = require('../libs/postgres.pool');
 
-async function initializePersonsDatabase() {
+async function initializeUsersDatabase() {
   await pool.query(
-    "CREATE TABLE persons (id SERIAL, name VARCHAR(50) NOT NULL,birth_date DATE,phone VARCHAR(15) NOT NULL UNIQUE, role  VARCHAR(15) NOT NULL DEFAULT 'customer')",
+    "CREATE TABLE users (id SERIAL, name VARCHAR(50) NOT NULL, role VARCHAR(10) NOT NULL DEFAULT 'customer', username VARCHAR(35) NOT NULL UNIQUE, email  VARCHAR(75) NOT NULL UNIQUE, password VARCHAR(25))",
   );
   await pool.query(
-    "INSERT INTO persons (name, birth_date, phone) VALUES ('Peter Wilson', '1990-07-15', '0711-020361')",
+    "INSERT INTO users ( name,username,email,password) VALUES ('Peter Wilson','peter_wil','peter@gmail.com', 'peter123')",
   );
   await pool.query(
-    "INSERT INTO persons (name, birth_date, phone) VALUES ('Maria Viltriado', '1999-07-15', '0611-020761')",
+    "INSERT INTO users ( name,role,username,email,password) VALUES ('Maria Viltriado', 'admin','maria_vl','maria@gmail.com', 'mar123')",
   );
   // console.log('Initialized');
 }
 
-async function clearPersonDatabase() {
-  await pool.query('DROP TABLE persons');
+async function clearUsersDatabase() {
+  await pool.query('DROP TABLE users');
   // console.log('Clear');
 }
 
-module.exports = { initializePersonsDatabase, clearPersonDatabase };
+module.exports = { initializeUsersDatabase, clearUsersDatabase };
