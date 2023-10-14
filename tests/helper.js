@@ -2,7 +2,7 @@ const pool = require('../libs/postgres.pool');
 
 async function initializePersonsDatabase() {
   await pool.query(
-    'CREATE TABLE persons (id SERIAL, name VARCHAR(50) NOT NULL,birth_date DATE,phone VARCHAR(15) NOT NULL UNIQUE)',
+    "CREATE TABLE persons (id SERIAL, name VARCHAR(50) NOT NULL,birth_date DATE,phone VARCHAR(15) NOT NULL UNIQUE, role  VARCHAR(15) NOT NULL DEFAULT 'customer')",
   );
   await pool.query(
     "INSERT INTO persons (name, birth_date, phone) VALUES ('Peter Wilson', '1990-07-15', '0711-020361')",

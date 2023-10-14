@@ -6,9 +6,10 @@ const api = supertest(app);
 const url = '/api/v1/persons';
 
 const model = {
-  name: 'Ruffo Carcelen',
+  name: 'Gabriel Garcia',
   birthDate: '1999-02-01',
-  phone: '0341-071251',
+  phone: '0441-071251',
+  role: 'admin',
 };
 const modelUpdate = {
   name: 'Julio Cesar',

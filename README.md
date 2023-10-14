@@ -113,7 +113,7 @@ Nota: En el directorio del "volumen" no solo persiste la data sino tambien la co
 
 | Command                                                                | Description                           |
 | ---------------------------------------------------------------------- | ------------------------------------- |
-| `psql -U <POSTGRES_USER>`                                              | Connect to PostgreSQL as a user       |
+| `psql -h localhost -d blog_database -U lobato`                         | Connect to PostgreSQL                 |
 | `createdb <DATABASE_NAME>`                                             | Create a new PostgreSQL database      |
 | `psql -d <DATABASE_NAME>`                                              | Connect to a specific database        |
 | `\l`                                                                   | List all databases                    |
@@ -194,9 +194,9 @@ Nota: Las migraciones son para controlar las versiones y cambios que yo haga en 
 
 42. Configuro los scripts para el "migration handler"
 
-| Comando                | Descripción                                       |
-|------------------------|---------------------------------------------------|
-| `migrations:generate`  | Genera una migración Sequelize con un nombre dado.|
-| `migrations:run`       | Ejecuta las migraciones Sequelize pendientes.    |
-| `migrations:revert`    | Revierte la última migración Sequelize ejecutada. |
-| `migrations:delete`    | Revierte todas las migraciones Sequelize ejecutadas. |
+| Comando               | Descripción                                          |
+| --------------------- | ---------------------------------------------------- |
+| `migrations:generate` | Genera una migración Sequelize con un nombre dado.   |
+| `migrations:run`      | Ejecuta las migraciones Sequelize pendientes.        |
+| `migrations:revert`   | Revierte la última migración Sequelize ejecutada.    |
+| `migrations:delete`   | Revierte todas las migraciones Sequelize ejecutadas. |
