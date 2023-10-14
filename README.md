@@ -172,8 +172,10 @@ Nota: Uno de los usos mas utiles de un ORM es que te permite hacer consultas sin
 - Creo un schema de la entidad.
 - Extiendo la clase Model de sequelize (a la que llame 'Person') y configuro mediante parametros algunos detalles, entre ellos, el nombre de la tabla.
 
-Nota: Otra funcion muy util es la de sequelize.sync(), la que usa la configuracion de la que estaba recien hablando para sincronizar. En un primer caso, esto crea la tabla 'persons' automaticamente si no existe y esto apenas corra el programa principal.
+Nota: Otra funcion muy util es la de sequelize.sync(), la que usa la configuracion de la que estaba recien hablando para sincronizar. En un primer caso, esto crea la tabla 'persons' automaticamente si no existe y esto apenas corra el programa principal.Pese a esto, no recomienda usarlo en "produccion"
 
 37. setupModels() hace funcion dentro del mismo archivo donde invoco la conexion sequelize, ya que necesita esta ultima para su configuracion.
 
 38. Establezco la syncronizacion de la que hable previamente. Ahora puedo cambiar mis services para que usen el "model" y no "sequelize" directamente.
+
+39. Reconfiguro el service de "persons" para que funcione mediante los metodos que vienen en estos modelos.
