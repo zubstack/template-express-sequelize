@@ -1,18 +1,17 @@
 const express = require('express');
-const { categories } = require('../utils/temp');
+const CategoryService = require('../services/category.service');
 
 const router = express.Router();
+const service = new CategoryService();
 
-router.get('/', (request, response) => {
-  response.json(categories);
+router.get('/', async (request, response) => {
+  response.json(await service.find());
 });
 
-router.get('/:id', (request, response) => {
+router.get('/:id', async (request, response) => {
   const { id } = request.params;
-  const searchedCategory = categories.find(
-    (category) => category.id === parseInt(id),
-  );
-  response.json(searchedCategory);
+  const searchedPost = await service.findOne(id);
+  response.json(searchedPost);
 });
 
 module.exports = router;
