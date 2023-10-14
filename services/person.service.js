@@ -1,5 +1,4 @@
 const boom = require('@hapi/boom');
-const sequelize = require('../libs/sequelize');
 const { models } = require('../libs/sequelize');
 
 class PersonService {
@@ -10,10 +9,8 @@ class PersonService {
     return data;
   }
   async findOne(id) {
-    const [data] = await sequelize.query(
-      `SELECT * FROM persons WHERE id = ${id}`,
-    );
-    if (!Object.keys(data).length) {
+    const data = await models.Person.findByPk(id);
+    if (!data) {
       throw boom.notFound('This person does not exist');
     }
     return data;
@@ -23,15 +20,13 @@ class PersonService {
     if (!Object.keys(body).length) {
       throw boom.badRequest('Missing data');
     }
-    const query = `INSERT INTO persons (name, birth_date, phone)
-    VALUES ('${body.name}', '${body.birth_date}', '${body.phone}');`;
-    await sequelize.query(query);
+    await models.Person.create(body);
     return body;
   }
 
   async delete(id) {
-    const [item] = await this.findOne(id);
-    await sequelize.query(`DELETE FROM persons WHERE id = ${item.id}`);
+    const person = await this.findOne(id);
+    await person.destroy();
     return id;
   }
 
@@ -39,15 +34,14 @@ class PersonService {
     if (!Object.keys(body).length) {
       throw boom.badRequest('Missing data');
     }
-    const [item] = await this.findOne(id);
-    const query = [];
-    for (const key in body) {
-      const element = body[key];
-      query.push(`${key} = '${element}'`);
+    const [response] = await models.Person.update(body, {
+      where: {
+        id: id,
+      },
+    });
+    if (!response) {
+      throw boom.notFound('This person does not exist');
     }
-    await sequelize.query(
-      `UPDATE persons SET ${query.join(', ')} WHERE id = ${item.id}`,
-    );
     return id;
   }
 }

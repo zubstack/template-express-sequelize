@@ -7,8 +7,8 @@ const url = '/api/v1/persons';
 
 const model = {
   name: 'Ruffo Carcelen',
-  birth_date: '1999-02-01',
-  phone: '0341-021251',
+  birthDate: '1999-02-01',
+  phone: '0341-071251',
 };
 const modelUpdate = {
   name: 'Julio Cesar',
@@ -22,15 +22,7 @@ beforeEach(async () => {
   await initializePersonsDatabase();
 });
 
-describe('CRUD persons', () => {
-  //   test('a specific note is within the returned notes', async () => {
-  //   const response = await api.get('/api/notes')
-
-  //   const contents = response.body.map(r => r.content)
-  //   expect(contents).toContain(
-  //     'Browser can execute only JavaScript'
-  //   )
-  // })
+describe('Finders', () => {
   test('persons are returned as json', async () => {
     const { body } = await api
       .get(url)
@@ -39,18 +31,27 @@ describe('CRUD persons', () => {
     expect(body).toHaveLength(2);
   });
 
-  test('get an specific person', async () => {
-    const { body } = await api.get(`${url}/2`);
-    const [data] = body;
-    expect(data.name).toBe('Maria Viltriado');
+  test('a specific person is within the returned person', async () => {
+    const response = await api.get(url);
+
+    const contents = response.body.map((r) => r.name);
+    expect(contents).toContain('Peter Wilson');
   });
 
+  test('get an specific person', async () => {
+    const { body } = await api.get(`${url}/2`);
+
+    expect(body.name).toBe('Maria Viltriado');
+  });
+});
+
+describe('CRUD persons', () => {
   test('update a person', async () => {
     await api.patch(`${url}/2`).send(modelUpdate).expect(201);
 
     const { body } = await api.get(`${url}/2`);
-    const [data] = body;
-    expect(data.name).toBe('Julio Cesar');
+
+    expect(body.name).toBe('Julio Cesar');
   });
 
   test('create a person', async () => {
