@@ -179,3 +179,11 @@ Nota: Otra funcion muy util es la de sequelize.sync(), la que usa la configuraci
 38. Establezco la syncronizacion de la que hable previamente. Ahora puedo cambiar mis services para que usen el "model" y no "sequelize" directamente.
 
 39. Reconfiguro el service de "persons" para que funcione mediante los metodos que vienen en estos modelos.
+
+### Migrations
+
+40. El primer paso es generar un archivo donde se alojaran las migraciones.
+
+Nota: Algo particular de sequelize es que no produce automaticamente migraciones, solo nos proporciona un motor para terminar estableciendolas nosotros mismo.
+
+41. Como ahora manejamos (lo que sea) con migraciones, deshablito el metodo sequelize.sync()
