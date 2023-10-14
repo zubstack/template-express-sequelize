@@ -1,15 +1,16 @@
 const boom = require('@hapi/boom');
 const { models } = require('../libs/sequelize');
+const { Person } = models;
 
 class PersonService {
   constructor() {}
 
   async find() {
-    const data = await models.Person.findAll();
+    const data = await Person.findAll();
     return data;
   }
   async findOne(id) {
-    const data = await models.Person.findByPk(id);
+    const data = await Person.findByPk(id);
     if (!data) {
       throw boom.notFound('This person does not exist');
     }
@@ -20,7 +21,7 @@ class PersonService {
     if (!Object.keys(body).length) {
       throw boom.badRequest('Missing data');
     }
-    await models.Person.create(body);
+    await Person.create(body);
     return body;
   }
 
@@ -34,7 +35,7 @@ class PersonService {
     if (!Object.keys(body).length) {
       throw boom.badRequest('Missing data');
     }
-    const [response] = await models.Person.update(body, {
+    const [response] = await Person.update(body, {
       where: {
         id: id,
       },
