@@ -200,3 +200,11 @@ Nota: Las migraciones son para controlar las versiones y cambios que yo haga en 
 | `migrations:run`      | Ejecuta las migraciones Sequelize pendientes.        |
 | `migrations:revert`   | Revierte la última migración Sequelize ejecutada.    |
 | `migrations:delete`   | Revierte todas las migraciones Sequelize ejecutadas. |
+
+Nota: Un uso poderoso de las migraciones es cuando quieres modificar una entidad. Simplemente editas el schema dentro de /models y corres el comando para generar una migracion que no seria mas que dos funciones cuya primera incorpora los cambios que indique y la segunda implementaria un "revert" en caso que quieras descartar estos utlimos cambios. Muy util.
+
+43. Agrego un nueva columna 'role' a la tabla 'person'. Primero modifico el schema para despues generar la migracion insertando el comando adecuado (e incluyendo un nombre para la migracion).
+
+44. Configuro la ultima migracion de tal manera que agregue una columna mas a la tabla o puedo revertir este ultimo cambio.
+
+Nota: Aun no se como usar el poder de las migraciones para el testing. Por el momento me toca hacer los cambios a mano en la funcion "helper.js" que inserta datos en la tabla de pruebas.
