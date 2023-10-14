@@ -187,3 +187,16 @@ Nota: Otra funcion muy util es la de sequelize.sync(), la que usa la configuraci
 Nota: Algo particular de sequelize es que no produce automaticamente migraciones, solo nos proporciona un motor para terminar estableciendolas nosotros mismo.
 
 41. Como ahora manejamos (lo que sea) con migraciones, deshablito el metodo sequelize.sync()
+
+Nota: sequelize.sync() nos garantizaba que siempre exista una tabla "persons" cada vez que corrieramos el programa principal.Ahora me toco delegar esa responsabilidad a "migration handler". Y cada vez que quiera garantizar la existencia de la tabla mencionada, debo ejecutar el comando correspondiente
+
+Nota: Las migraciones son para controlar las versiones y cambios que yo haga en como formateo las tablas de las entidades de una base de datos.
+
+42. Configuro los scripts para el "migration handler"
+
+| Comando                | Descripción                                       |
+|------------------------|---------------------------------------------------|
+| `migrations:generate`  | Genera una migración Sequelize con un nombre dado.|
+| `migrations:run`       | Ejecuta las migraciones Sequelize pendientes.    |
+| `migrations:revert`    | Revierte la última migración Sequelize ejecutada. |
+| `migrations:delete`    | Revierte todas las migraciones Sequelize ejecutadas. |
