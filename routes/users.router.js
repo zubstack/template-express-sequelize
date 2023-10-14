@@ -10,8 +10,8 @@ router.get('/', async (request, response) => {
 
 router.get('/:id', async (request, response) => {
   const { id } = request.params;
-  const searchedPost = await service.findOne(id);
-  response.json(searchedPost);
+  const searchedUser = await service.findOne(id);
+  response.json(searchedUser);
 });
 
 router.post('/', async (request, response) => {

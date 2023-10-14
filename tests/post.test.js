@@ -9,7 +9,6 @@ const model = {
   author: 'Gertrude Kuvalis',
   content:
     'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, eaque cumque vel voluptatem consequuntur et consequatur.',
-  location: 'Ecuador',
   image: 'https://picsum.photos/seed/Bmcreh/640/480',
   categoryId: 1,
   isPrivate: false,

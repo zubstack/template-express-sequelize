@@ -208,3 +208,11 @@ Nota: Un uso poderoso de las migraciones es cuando quieres modificar una entidad
 44. Configuro la ultima migracion de tal manera que agregue una columna mas a la tabla o puedo revertir este ultimo cambio.
 
 Nota: Aun no se como usar el poder de las migraciones para el testing. Por el momento me toca hacer los cambios a mano en la funcion "helper.js" que inserta datos en la tabla de pruebas.
+
+45. Implementacion de entidades:
+
+- Remove 'persons'
+- Implement 'users'
+- Implement 'posts'
+
+Nota: Si quiero implementar los test, he de aprender primero como hacerlo con las migraciones, sino sera un dolor de cabeza :/
