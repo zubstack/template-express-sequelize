@@ -8,6 +8,7 @@ function setupModels(sequelize) {
   Category.init(CategorySchema, Category.config(sequelize));
 
   Post.associate(sequelize.models);
+  Category.associate(sequelize.models);
 }
 
 module.exports = setupModels;

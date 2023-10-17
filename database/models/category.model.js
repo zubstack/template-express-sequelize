@@ -14,7 +14,12 @@ const CategorySchema = {
 };
 
 class Category extends Model {
-  static associate() {}
+  static associate(models) {
+    this.hasMany(models.Post, {
+      as: 'posts',
+      foreignKey: 'categoryId',
+    });
+  }
   static config(sequelize) {
     return {
       sequelize,
