@@ -214,5 +214,16 @@ Nota: Aun no se como usar el poder de las migraciones para el testing. Por el mo
 - Remove 'persons'
 - Implement 'users'
 - Implement 'posts'
+- Implement 'categories'
 
 Nota: Si quiero implementar los test, he de aprender primero como hacerlo con las migraciones, sino sera un dolor de cabeza :/
+
+## Relaciones
+
+![Relacion uno a muchos](/public/image.png)
+
+Nota: Creo una relacion uno a muchos (aunque el tutorial decia uno a uno) entre posts y categories. A cada post le corresponde una categoria, cada categoria puede tener varios posts. Los cambios visuales son visibles desde pgadmin
+
+46. Cambio el schema de posts para lograr relacion uno a muchos con categories. Se configuro el metodo associate() del "Model object" para posts.
+
+47. Elimimo todas las migraciones para implementar los nuevos cambios. Practica no recomendada para cuando las dases de datos ya guardan informacion importante. Todo este proceso deberia ser controlado por migraciones.

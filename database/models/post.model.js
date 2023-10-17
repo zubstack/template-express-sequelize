@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
+const { CATEGORY_TABLE } = require('./category.model');
 
 const POST_TABLE = 'posts';
 const PostSchema = {
@@ -25,13 +26,22 @@ const PostSchema = {
     type: DataTypes.STRING,
   },
   categoryId: {
+    field: 'category_id',
     allowNull: false,
     type: DataTypes.INTEGER,
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    references: {
+      model: CATEGORY_TABLE,
+      key: 'id',
+    },
   },
 };
 
 class Post extends Model {
-  static associate() {}
+  static associate(models) {
+    this.belongsTo(models.Category, { as: 'category' });
+  }
   static config(sequelize) {
     return {
       sequelize,
