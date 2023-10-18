@@ -10,7 +10,9 @@ class CategoryService {
     return data;
   }
   async findOne(id) {
-    const data = await Category.findByPk(id);
+    const data = await Category.findByPk(id, {
+      include: ['posts'],
+    });
     if (!data) {
       throw boom.notFound('This category does not exist');
     }
