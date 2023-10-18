@@ -226,4 +226,8 @@ Nota: Creo una relacion uno a muchos (aunque el tutorial decia uno a uno) entre 
 
 46. Cambio el schema de posts para lograr relacion uno a muchos con categories. Se configuro el metodo associate() del "Model object" para posts.
 
-47. Elimimo todas las migraciones para implementar los nuevos cambios. Practica no recomendada para cuando las dases de datos ya guardan informacion importante. Todo este proceso deberia ser controlado por migraciones.
+47. Elimimo todas las migraciones para implementar los nuevos cambios. Practica no recomendada para cuando las bases de datos ya guardan informacion importante. Todo este proceso deberia ser controlado por migraciones.
+
+48. Cambio el schema de categories para acentar la relacion uno a muchos.
+
+49. Creo en la entidad "orders" y "ebooks". Hace referencia al servicio de venda de ebooks, donde se registra todo a partir de ordenes de compra.
