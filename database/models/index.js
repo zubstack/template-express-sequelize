@@ -13,6 +13,8 @@ function setupModels(sequelize) {
 
   Post.associate(sequelize.models);
   Category.associate(sequelize.models);
+  Order.associate(sequelize.models);
+  User.associate(sequelize.models);
 }
 
 module.exports = setupModels;

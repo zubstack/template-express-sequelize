@@ -1,4 +1,5 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
+const { USER_TABLE } = require('./user.model');
 
 const ORDER_TABLE = 'orders';
 const OrderSchema = {
@@ -12,10 +13,23 @@ const OrderSchema = {
     type: DataTypes.DATE,
     defaultValue: Sequelize.NOW,
   },
+  userId: {
+    field: 'user_id',
+    allowNull: false,
+    type: DataTypes.INTEGER,
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    references: {
+      model: USER_TABLE,
+      key: 'id',
+    },
+  },
 };
 
 class Order extends Model {
-  static associate() {}
+  static associate(models) {
+    this.belongsTo(models.User, { as: 'user' });
+  }
   static config(sequelize) {
     return {
       sequelize,

@@ -6,7 +6,7 @@ class CategoryService {
   constructor() {}
 
   async find() {
-    const data = await Category.findAll();
+    const data = await Category.findAll({ include: 'posts' });
     return data;
   }
   async findOne(id) {
