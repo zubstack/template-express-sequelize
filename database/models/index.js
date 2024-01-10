@@ -1,12 +1,12 @@
-const { Post, PostSchema } = require('./post.model');
-const { Category, CategorySchema } = require('./category.model');
+const { Card, CardSchema } = require('./card.model');
+const { Deck, DeckSchema } = require('./deck.model');
 
 function setupModels(sequelize) {
-  Post.init(PostSchema, Post.config(sequelize));
-  Category.init(CategorySchema, Category.config(sequelize));
+  Card.init(CardSchema, Card.config(sequelize));
+  Deck.init(DeckSchema, Deck.config(sequelize));
 
-  Post.associate(sequelize.models);
-  Category.associate(sequelize.models);
+  Card.associate(sequelize.models);
+  Deck.associate(sequelize.models);
 }
 
 module.exports = setupModels;
