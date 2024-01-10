@@ -1,9 +1,19 @@
 const app = require('./app');
+const sequelize = require('./libs/sequelize');
 const logger = require('./utils/logger');
 
-const port = process.env.NODE_ENV !== 'test' ? 4000 : 4001;
-// const port = 4000;
+const PORT = process.env.NODE_ENV !== 'test' ? 4000 : 4001;
 
-app.listen(port, () => {
-  logger.info('Server is running at port: ' + port);
-});
+const connectDb = async () => {
+  try {
+    await sequelize.authenticate();
+    logger.info('Connection has been established successfully.');
+  } catch (error) {
+    logger.error('Unable to connect to the database:', error);
+  }
+};
+
+(async () => {
+  await connectDb();
+  app.listen(PORT, () => logger.info(`Server running on port ${PORT}`));
+})();

@@ -1,7 +1,7 @@
 {
-  "name": "practice-express-sql__database",
+  "name": "template-express-sequelize",
   "version": "1.0.0",
-  "description": "",
+  "description": "A template maden with express & sequelize for Postgres database",
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=production node index.js",

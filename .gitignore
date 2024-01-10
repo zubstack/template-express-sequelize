@@ -217,11 +217,13 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/node,linux,windows,macos
 
-#REST CLIENT
+# REST CLIENT
 .requests
 
-#Postgres volume:
+# Postgres volume:
 postgres_data
 
-#Temporal storage
-# utils/temp.js
+# Docker compose
+docker-compose.yml
+
+

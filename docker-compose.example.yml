@@ -2,11 +2,12 @@ version: "3.3"
 
 services:
   postgres:
+    container_name: postgres_data
     image: postgres:13
     environment:
-      - POSTGRES_DB=blog_database
-      - POSTGRES_USER=lobato
-      - POSTGRES_PASSWORD=loto123
+      - POSTGRES_DB=postgres_database
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
     ports:
       - 5432:5432
     volumes:
