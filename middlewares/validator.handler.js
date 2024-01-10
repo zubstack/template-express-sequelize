@@ -6,7 +6,7 @@ function validatorHandler(schema, property) {
     const data = request[property];
     const { error } = schema.validate(data);
     if (error) {
-      next(boom.badRequest(error));
+      return next(boom.badRequest(error));
     }
     next();
   };

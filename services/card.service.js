@@ -1,20 +1,18 @@
 const boom = require('@hapi/boom');
 const { models } = require('../libs/sequelize');
-const { Post } = models;
+const { Card } = models;
 
-class PostService {
+class CardService {
   constructor() {}
 
   async find() {
-    const data = await Post.findAll({
-      include: ['category'],
-    });
+    const data = await Card.findAll({});
     return data;
   }
-  async findOne(id) {
-    const data = await Post.findByPk(id);
+  async findById(id) {
+    const data = await Card.findByPk(id);
     if (!data) {
-      throw boom.notFound('This Post does not exist');
+      throw boom.notFound('This Card does not exist');
     }
     return data;
   }
@@ -23,30 +21,30 @@ class PostService {
     if (!Object.keys(body).length) {
       throw boom.badRequest('Missing data');
     }
-    await Post.create(body);
+    await Card.create(body);
     return body;
   }
 
-  async delete(id) {
-    const Post = await this.findOne(id);
-    await Post.destroy();
-    return id;
+  async destroy(id) {
+    const Card = await this.findById(id);
+    await Card.destroy();
+    return;
   }
 
   async update(id, body) {
     if (!Object.keys(body).length) {
       throw boom.badRequest('Missing data');
     }
-    const [response] = await Post.update(body, {
+    const [response] = await Card.update(body, {
       where: {
         id: id,
       },
     });
     if (!response) {
-      throw boom.notFound('This Post does not exist');
+      throw boom.notFound('This Card does not exist');
     }
-    return id;
+    return;
   }
 }
 
-module.exports = PostService;
+module.exports = CardService;

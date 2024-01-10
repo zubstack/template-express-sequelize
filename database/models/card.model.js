@@ -10,11 +10,11 @@ const CardSchema = {
   },
 
   question: {
-    type: DataTypes.CHAR(1000),
+    type: DataTypes.STRING,
     allowNull: false,
   },
   answer: {
-    type: DataTypes.CHAR(1000),
+    type: DataTypes.STRING,
     allowNull: false,
   },
   domain: {
@@ -43,6 +43,7 @@ class Card extends Model {
       sequelize,
       tableName: CARD_TABLE,
       modelName: 'Card',
+      underscored: true,
     };
   }
 }
