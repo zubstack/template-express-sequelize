@@ -1,4 +1,6 @@
-## List of dependencies:
+# Express & sequelize template
+
+For Postgres databases
 
 #### Steps
 
