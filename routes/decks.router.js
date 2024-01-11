@@ -19,8 +19,8 @@ router.get(
   validatorHandler(getDeckSchema, 'params'),
   async (request, response) => {
     const { id } = request.params;
-    const searchedPost = await service.findById(id);
-    response.json(searchedPost);
+    const searchedDeck = await service.findById(id);
+    response.json({ deck: searchedDeck });
   },
 );
 
