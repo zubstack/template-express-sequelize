@@ -1,21 +1,35 @@
-const pool = require('../libs/postgres.pool');
+const sequelize = require('../libs/sequelize');
+const { models } = require('../libs/sequelize');
+const { Deck, Card } = models;
 
-async function initializeUsersDatabase() {
-  await pool.query(
-    "CREATE TABLE users (id SERIAL, name VARCHAR(50) NOT NULL, role VARCHAR(10) NOT NULL DEFAULT 'customer', username VARCHAR(35) NOT NULL UNIQUE, email  VARCHAR(75) NOT NULL UNIQUE, password VARCHAR(25))",
-  );
-  await pool.query(
-    "INSERT INTO users ( name,username,email,password) VALUES ('Peter Wilson','peter_wil','peter@gmail.com', 'peter123')",
-  );
-  await pool.query(
-    "INSERT INTO users ( name,role,username,email,password) VALUES ('Maria Viltriado', 'admin','maria_vl','maria@gmail.com', 'mar123')",
-  );
-  // console.log('Initialized');
+async function syncAndSeed() {
+  await sequelize.sync({ force: true });
+  const decks = [
+    {
+      topic: 'ultimates',
+    },
+  ];
+  const cards = [
+    {
+      question: 'Mordekaiser',
+      answer: 'Reino de la muerte',
+      deck_id: 1,
+    },
+    {
+      question: 'Garen',
+      answer: 'Justicia demaciana',
+      deck_id: 1,
+    },
+  ];
+  const [ultimates] = await Promise.all(decks.map((deck) => Deck.create(deck)));
+  const [foo, bar] = await Promise.all(cards.map((card) => Card.create(card)));
+
+  return {
+    decks: {
+      ultimates,
+    },
+    cards: { foo, bar },
+  };
 }
 
-async function clearUsersDatabase() {
-  await pool.query('DROP TABLE users');
-  // console.log('Clear');
-}
-
-module.exports = { initializeUsersDatabase, clearUsersDatabase };
+module.exports = { syncAndSeed };
