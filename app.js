@@ -9,11 +9,15 @@ const {
   boomErrorHandler,
   unknownEndpoint,
 } = require('./middlewares/error.handler.js');
+const { config } = require('./config/config.js');
 
 const app = express();
 
 app.use(express.json());
-app.use(morgan('dev'));
+
+if (!config.testing) {
+  app.use(morgan('dev'));
+}
 app.use(cors());
 app.use(express.static('public'));
 
