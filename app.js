@@ -15,9 +15,10 @@ const app = express();
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(cors());
+app.use(express.static('public'));
 
 app.get('/', (request, response) => {
-  response.send('<h1>Welcome to Blog API</h1>');
+  response.sendFile('index.html', { root: 'public' });
 });
 routerApi(app);
 
