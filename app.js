@@ -1,6 +1,7 @@
 const express = require('express');
 require('express-async-errors');
 const cors = require('cors');
+const morgan = require('morgan');
 const routerApi = require('./routes');
 const {
   logErrors,
@@ -8,12 +9,11 @@ const {
   boomErrorHandler,
   unknownEndpoint,
 } = require('./middlewares/error.handler.js');
-const requestLogger = require('./middlewares/logger.request');
 
 const app = express();
 
 app.use(express.json());
-app.use(requestLogger);
+app.use(morgan('dev'));
 app.use(cors());
 
 app.get('/', (request, response) => {
