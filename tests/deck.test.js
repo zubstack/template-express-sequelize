@@ -38,6 +38,16 @@ describe('Decks: Getters', () => {
     const { body } = await api.get(`${url}/${id}`);
     expect(body.deck.topic).toBe('ultimates');
   });
+
+  test('get an specific Deck including their cards', async () => {
+    const id = seed.decks.ultimates.id;
+    const { body } = await api.get(`${url}/cards/${id}`);
+    const {cards} = body
+    const questions = cards.map(card => card.question)
+    expect(questions).toContain(
+      'Mordekaiser'
+    )
+  });
 });
 describe('Decks: Setters', () => {
   test('update a Deck', async () => {

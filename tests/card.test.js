@@ -7,13 +7,13 @@ const url = '/api/v1/cards';
 
 const model = {
   question: 'Jhin',
-  answer: 'Escena final',
+  answer: 'Curtain Call',
   deck_id: 1,
 };
 
 const modelUpdate = {
-  question: 'Darius',
-  answer: 'Guillotina noxiana',
+  question: 'Yasuo',
+  answer: 'Last Breath',
 };
 
 const badModel = {
@@ -47,7 +47,7 @@ describe('Cards: Setters', () => {
     await api.patch(`${url}/${id}`).send(modelUpdate).expect(201);
 
     const { body } = await api.get(`${url}/${id}`);
-    expect(body.card.question).toBe('Darius');
+    expect(body.card.question).toBe('Yasuo');
   });
 
   test('post a card', async () => {

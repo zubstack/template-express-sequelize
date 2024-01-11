@@ -12,12 +12,12 @@ async function syncAndSeed() {
   const cards = [
     {
       question: 'Mordekaiser',
-      answer: 'Reino de la muerte',
+      answer: "Realm of Death",
       deck_id: 1,
     },
     {
       question: 'Garen',
-      answer: 'Justicia demaciana',
+      answer: 'Demacian Justice',
       deck_id: 1,
     },
   ];

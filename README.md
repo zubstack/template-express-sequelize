@@ -9,12 +9,18 @@
   - npx sequelize-cli db:create --env "test"
 - Recommended: requests => .requests
   
+Flujo de trabajo: 
+  - docker compose up -d 
+  - npm run dev
+ 
 #### Rest Client
 Decks
 ```bash
 GET http://localhost:4000/api/v1/decks
 ###
 GET http://localhost:4000/api/v1/decks/:id
+###
+GET http://localhost:4000/api/v1/decks/cards/:id
 ###
 POST http://localhost:4000/api/v1/decks
 Content-Type: application/json
@@ -103,3 +109,7 @@ content-type: application/json
 ## Relaciones
 
 ![Relacion uno a muchos](/public/image.png)
+
+#### Pendientes
+
+ * Deberia haber alguna forma de descaragar la informacion en json y asi mismo cargarla de vuelta por medio del mismo. 
