@@ -8,6 +8,16 @@ class DeckService {
     const data = await Deck.findAll();
     return data;
   }
+  async getCards(id) {
+    const data = await Deck.findOne({
+      where: { id: id },
+      include: 'cards',
+    });
+    if (!data) {
+      throw boom.notFound('This deck does not exist');
+    }
+    return data;
+  }
   async findById(id) {
     const data = await Deck.findByPk(id);
     if (!data) {

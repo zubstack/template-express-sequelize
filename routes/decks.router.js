@@ -24,6 +24,19 @@ router.get(
   },
 );
 
+router.get(
+  '/cards/:id',
+  validatorHandler(getDeckSchema, 'params'),
+  async (request, response) => {
+    const { id } = request.params;
+    const searchedDeck = await service.getCards(id);
+    response.json({
+      deck: { id: searchedDeck.id, topic: searchedDeck.topic },
+      cards: searchedDeck.cards,
+    });
+  },
+);
+
 router.post(
   '/',
   validatorHandler(createDeckSchema, 'body'),
