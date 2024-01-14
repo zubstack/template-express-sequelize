@@ -1,22 +1,25 @@
-# Express & sequelize template
+# Express & Sequelize Template
 
 For Postgres databases
 
-#### Steps
+## Steps
 
-- npm install
-- Setup .env and docker-compose.yml files
-- Correr migraciones
-  - npm run migrations:run
-  - npx sequelize-cli db:create --env "test"
-- Recommended: requests => .requests
-  
-Flujo de trabajo: 
-  - docker compose up -d 
-  - npm run dev
- 
-#### Rest Client
-Decks
+- Run `npm install`
+- Set up `.env` and `docker-compose.yml` files
+- Run migrations
+  - `npm run migrations:run`
+  - `npx sequelize-cli db:create --env "test"`
+- Recommended: check requests in `.requests` file
+
+**Workflow:**
+
+- Run `docker-compose up -d`
+- Run `npm run dev`
+
+## Rest Client
+
+**Decks**
+
 ```bash
 GET http://localhost:4000/api/v1/decks
 ###
@@ -28,7 +31,7 @@ POST http://localhost:4000/api/v1/decks
 Content-Type: application/json
 
 {
-  "topic":"fruits"
+  "topic": "fruits"
 }
 ###
 DELETE  http://localhost:4000/api/v1/decks/:id
@@ -37,10 +40,12 @@ PATCH http://localhost:4000/api/v1/decks/:id
 Content-Type: application/json
 
 {
-  "topic":"fruticas"
+  "topic": "little fruits"
 }
 ```
-Cards 
+
+Cards
+
 ```bash
 
 GET http://localhost:4000/api/v1/cards
@@ -67,7 +72,7 @@ content-type: application/json
 
 ```
 
-#### Comandos de Docker Compose
+#### Docker Compose Commands
 
 | Comando                                    | Descripción                                                                                          |
 | ------------------------------------------ | ---------------------------------------------------------------------------------------------------- |
@@ -111,7 +116,3 @@ content-type: application/json
 ## Relaciones
 
 ![Relacion uno a muchos](/public/image.png)
-
-#### Pendientes
-
- * Deberia haber alguna forma de descaragar la informacion en json y asi mismo cargarla de vuelta por medio del mismo. 
